@@ -1,0 +1,58 @@
+dce:
+  url: "https://dev.d.run"
+  insight: "10.33.3.13:30134"
+  token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IkRKVjlBTHRBLXZ4MmtQUC1TQnVGS0dCSWc1cnBfdkxiQVVqM2U3RVByWnMiLCJ0eXAiOiJKV1QifQ.eyJpYXQiOjE3MzU4MDE2MzYsImlzcyI6ImdoaXBwby5pbyIsInN1YiI6IjI3MGJkMGMzLTNlNDgtNDZjNi05N2EwLTIzMzIxMzY2MmU3ZCIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ3JvdXBzIjpbXSwiaWQiOiJkYWNlOTFmNC01YTQ1LTQ3NDgtOGViOC1kYzI0MjA1MTkwZWQifQ.IBVfm84p8hwv9a7JEYCWFicyo7ejMbKLpDiJMtId3OZilDFKGTDOpqbjrXYBUIXsbyCZDZSjnD5Wa8Z05hgmqSr33sIKndepvQcFQVqgdOJ_8gx9258gwc_iINn67Zo9toqFNOf-9V5OTXjwzwrnZ34pIquPJD6ke81p1HXLV05FOaHujRaT33KCUqSOBje5Wn_gtmszYsqt3l-7rxz-2dy7c65TvWusp9VU-FkgKoSzBKVzHUyYLPg_dTov00AiEV79DceMEU-8pOj4DhHUbLmviQ6PtxDXIR96GDhEobiE6GY9HPz4r5ROlJBsY6RV6X2Z_5w4OoUiavtIvP-I4w"
+tracer:
+  enable: false
+  endpoint: "http://test.com"
+kube:
+  configPath: "config/kubeconfig"
+insecureSkipVerify: true
+mysql:
+  dsn: "root:root1234@(10.33.3.18:31913)/pufa_token?charset=utf8mb4&parseTime=True&loc=Local"
+  batchSize: 100
+  maxIdleConns: 10
+  maxOpenConns: 20
+  autoMigrate: true
+  debug: false
+  cacheFlag: true
+envConfs: 
+  - name: "test"  # 环境名称，唯一
+    alias: "测试环境" # 环境别名，用于前端展示
+    isDefault: true
+  - name: "prod"
+    alias: "生产环境"
+    isDefault: false
+  - name: "dev"
+    alias: "开发环境"
+
+# dce:
+#   url: "https://10.29.142.121"
+#   insight: "10.29.14.27:32656"
+#   token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IkRKVjlBTHRBLXZ4MmtQUC1TQnVGS0dCSWc1cnBfdkxiQVVqM2U3RVByWnMiLCJ0eXAiOiJKV1QifQ.eyJpYXQiOjE3NDQwMDY1OTIsImlzcyI6ImdoaXBwby5pbyIsInN1YiI6IjUzYmYwNmYzLWZmMjYtNDcwOC05MzQ1LWVjYmZjZGE4ZDY0YiIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ3JvdXBzIjpbXSwiaWQiOiJlOGIyNTIyNC1lNTNjLTRjNmQtYmQxMS0zYjVkYzZkMzMxODgifQ.ZoJTr1CokXxvnG5X_moj3gk089z_SZUsOnWcdgFiSM9cNBDv2bKgzhj5OcPFu2IQkAWIE-DsidZA4jAfj_CznCpzL5VYXMwX1nAC6VAGYoIMOndxs-zuTgS_GvxqZNR-l5IutDQ2wr3Z_rtP3RV6y-sHbwkNJzlek0KpYWGBlfHStrHteg70i0RO6zF2c9Tg348yQqtPG_gPIDASOsSWRUDn5hi2Lc_Z4qbPUTYhC8knUEuBtpjkP4mGBWKwCGnqVGfZreBqpen4t3Fw81X_rq2PKWppm78GNqk5XqMCWyRdLHrZ_Ltdg8Kl2c2uB3lr5dl5G7a3HxS2B_POHXEpqA"
+# tracer:
+#   enable: false
+#   endpoint: "http://test.com"
+# kube:
+#   configPath: "config/kubeconfig"
+# insecureSkipVerify: true
+# mysql:
+#   dsn: "root:root1234@(10.33.3.18:31913)/pufa_token?charset=utf8mb4&parseTime=True&loc=Local"
+#   batchSize: 100
+#   maxIdleConns: 10
+#   maxOpenConns: 20
+#   autoMigrate: true
+#   debug: false
+#   cacheFlag: true
+# redis:
+#   url: "redis://:root1234@10.33.3.18:30960/0"
+# envConfs: 
+#   - name: "test"  # 环境名称，唯一
+#     alias: "测试环境" # 环境别名，用于前端展示
+#     isDefault: true
+#   - name: "prod"
+#     alias: "生产环境"
+#     isDefault: false
+#   - name: "dev"
+#     alias: "开发环境"
+

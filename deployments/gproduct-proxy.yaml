@@ -1,0 +1,53 @@
+apiVersion: ghippo.io/v1alpha1
+kind: GProductNavigator
+metadata:
+  name: auth-engine
+spec:
+  gproduct: auth-engine
+  iconUrl: ./ui/auth-engine/logo.svg
+  isCustom: false
+  localizedName:
+    en-US: Auth Engine
+    zh-CN: 认证管理
+  name: 认证管理
+  order: 0
+  parentGProduct: skoala
+  url: ./pa-engine/ws/__all__/token/list
+  visible: true
+---
+apiVersion: ghippo.io/v1alpha1
+kind: GProductProxy
+metadata:
+  name: auth-engine
+spec:
+  gproduct: auth-engine
+  proxies:
+    - authnCheck: false
+      destination:
+        host: ghippo-anakin.ghippo-system.svc.cluster.local
+        port: 80
+      labels:
+        kind: UIEntry
+      match:
+        uri:
+          prefix: /pa-engine/
+      rewrite:
+        uri: /index.html
+    - authnCheck: false
+      destination:
+        host: auth-ui.auth-engine-system.svc.cluster.local
+        port: 8080
+      labels:
+        kind: UIAssets
+      match:
+        uri:
+          prefix: /ui/auth-engine/
+      rewrite:
+        uri: /
+    - authnCheck: false
+      destination:
+        host: auth-engine.auth-engine-system.svc.cluster.local
+        port: 8888
+      match:
+        uri:
+          prefix: /apis/auth.engine.io

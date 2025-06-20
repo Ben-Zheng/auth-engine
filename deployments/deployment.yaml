@@ -1,0 +1,53 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: auth-engine
+  namespace: auth-engine-system
+  labels:
+    app.kubernetes.io/instance: auth-engine
+    app.kubernetes.io/name: auth-engine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-engine
+  template:
+    metadata:
+      labels:
+        app: auth-engine
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: auth-engine-cm
+            defaultMode: 420
+      containers:
+        - name: auth-engine
+          image: hub.intranet.daocloud.io/pufa/auth-engine:v0.1.0
+          ports:
+            - name: http
+              containerPort: 8888
+              protocol: TCP
+          env:
+            - name: CONFIG_PATH
+              value: /etc/auth-engine
+            - name: HOST_CLUSTER
+              value: kpanda-global-cluster
+            - name: HOST_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - name: config
+              mountPath: /etc/auth-engine
+          imagePullPolicy: Always
+      restartPolicy: Always
+      serviceAccountName: auth-engine

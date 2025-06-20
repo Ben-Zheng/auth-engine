@@ -1,0 +1,45 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: auth-ui
+  namespace: auth-engine-system
+  labels:
+    app.kubernetes.io/instance: auth-ui
+    app.kubernetes.io/name: auth-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-ui
+  template:
+    metadata:
+      labels:
+        app: auth-ui
+    spec:
+      containers:
+        - name: auth-ui
+          image: release.daocloud.io/auth-ui/auth-ui:v0.1.0
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          imagePullPolicy: Always
+      restartPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: auth-ui
+  namespace: auth-engine-system
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: auth-ui
+  type: NodePort
